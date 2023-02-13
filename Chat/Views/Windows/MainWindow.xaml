@@ -4,17 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chat"
-        xmlns:vm="clr-namespace:Chat.ViewsModels" d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModels}"
+        xmlns:vm="clr-namespace:Chat.ViewsModels" d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
+        xmlns:cmd="clr-namespace:Chat.Infrastructures.Commands"
         mc:Ignorable="d"
         Title="{Binding Title}"
         Height="450" Width="800">
     <Window.DataContext>
-        <vm:MainWindowViewModels/>
+        <vm:MainWindowViewModel/>
     </Window.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Exit"/>
+                <MenuItem Header="Exit">
+                    <MenuItem.Command>
+                        <cmd:CloseApplicationCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Setting"></MenuItem>
             <MenuItem Header="Help"></MenuItem>
