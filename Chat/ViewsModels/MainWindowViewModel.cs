@@ -1,5 +1,9 @@
 ﻿using Chat.Infrastructures.Commands;
+using Chat.Models;
 using Chat.ViewsModels.Base;
+
+using OxyPlot;
+using OxyPlot.Series;
 
 using System;
 using System.Collections.Generic;
@@ -10,21 +14,40 @@ using System.Windows;
 using System.Windows.Input;
 
 namespace Chat.ViewsModels {
-    internal class MainWindowViewModel:ViewModel {
+    internal class MainWindowViewModel : ViewModel {
 
+      
+
+        #region   Test data
+
+        private IEnumerable<Models.DataPoint>  _TestDataPoints;
+
+        public IEnumerable<Models.DataPoint> TestDataPoints {
+            get => _TestDataPoints;
+            set => Set ( ref _TestDataPoints, value );
+        }
+
+        public PlotModel Model { get; private set; }
+
+        #endregion
+
+        #region Title
         private string _Title = "Chat Vizavi";
 
         public string Title {
             get => _Title;
-            set => Set ( ref _Title,  value );
+            set => Set ( ref _Title, value );
         }
+        #endregion
 
+        #region Status
         private string? _Status = "Ready";
 
         public string Status {
             get => _Status;
             set => Set ( ref _Status, value );
         }
+        #endregion
 
         #region Commands
 
@@ -49,6 +72,23 @@ namespace Chat.ViewsModels {
             CloseApplicationCommand = new LambdaCommand ( OnCloseApplicationCommanExecute, CanCloseApplicationCommanExecute );
             #endregion
 
+            #endregion
+
+            #region  Test data constructor
+            var tmp = new PlotModel{ Title="",Subtitle=""};
+            var series = new LineSeries {Title="", MarkerType=MarkerType.Cross};
+            var data_point = new List<Models.DataPoint> ((int)(360 / 0.1));
+            for ( var x = 0d; x <= 360; x += 0.1 ) {
+
+                const double to_rad = Math.PI/180;
+                var y = Math.Sin( x * to_rad );
+                data_point.Add ( new Models.DataPoint { XValue = x, YValue = y } );
+                series.Points.Add (new OxyPlot.DataPoint((int)x,(int)y));
+                
+            }
+            tmp.Series.Add ( series );
+            TestDataPoints = data_point;
+            this.Model = tmp;
             #endregion
         }
     }

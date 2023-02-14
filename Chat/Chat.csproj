@@ -9,14 +9,17 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="ViewsModels\Base " />
+    <Folder Include="Infrastructures\Commands " />
    
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="FontAwesome5" Version="2.1.11" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
+   
+ 
   </ItemGroup>
 
 </Project>
