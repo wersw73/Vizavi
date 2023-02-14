@@ -45,7 +45,7 @@
                 <TextBlock Text="45678"/>
             </StatusBarItem>
         </StatusBar>
-        <TabControl>
+        <TabControl SelectedIndex="{Binding SelectTabIndex}">
             <TabItem>
                 <TabItem.Header>
                     <fa:ImageAwesome Icon="Brands_Accusoft" Height="13"/>
@@ -78,7 +78,14 @@
                       Height="350" Width="700"    
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center">
-                    <oxy:PlotView Model="{Binding Model}"/>
+                    <oxy:PlotView oxy:Background="AntiqueWhite"
+                                  oxy:Foreground="Red"
+                                  oxy:BorderBrush="Green"
+                                  oxy:BorderThickness="7"
+                                  oxy:Margin="2,2,2,2"
+                                  Model="{Binding Model}">
+                   
+                    </oxy:PlotView>
                 </Grid>
             </TabItem>
         </TabControl>

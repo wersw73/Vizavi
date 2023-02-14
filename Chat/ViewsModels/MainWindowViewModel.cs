@@ -16,16 +16,25 @@ using System.Windows.Input;
 namespace Chat.ViewsModels {
     internal class MainWindowViewModel : ViewModel {
 
-      
+        #region  Tab control
 
-        #region   Test data
+        private int _SelectTabIndex = 1;
 
-        private IEnumerable<Models.DataPoint>  _TestDataPoints;
-
-        public IEnumerable<Models.DataPoint> TestDataPoints {
-            get => _TestDataPoints;
-            set => Set ( ref _TestDataPoints, value );
+        public int SelectTabIndex {
+            get => _SelectTabIndex;
+            set => Set ( ref _SelectTabIndex, value );
         }
+
+        #endregion
+
+        #region   Plotting data
+
+        //private IEnumerable<Models.DataPoint>  _TestDataPoints;
+
+        // public IEnumerable<Models.DataPoint> TestDataPoints {
+        //     get => _TestDataPoints;
+        //     set => Set ( ref _TestDataPoints, value );
+        // }
 
         public PlotModel Model { get; private set; }
 
@@ -75,19 +84,19 @@ namespace Chat.ViewsModels {
             #endregion
 
             #region  Test data constructor
-            var tmp = new PlotModel{ Title="",Subtitle=""};
+            var tmp = new PlotModel{ Title="Cosines",Subtitle=""};
             var series = new LineSeries {Title="", MarkerType=MarkerType.Cross};
-            var data_point = new List<Models.DataPoint> ((int)(360 / 0.1));
+            // var data_point = new List<Models.DataPoint> ((int)(360 / 0.1));
             for ( var x = 0d; x <= 360; x += 0.1 ) {
 
                 const double to_rad = Math.PI/180;
-                var y = Math.Sin( x * to_rad );
-                data_point.Add ( new Models.DataPoint { XValue = x, YValue = y } );
-                series.Points.Add (new OxyPlot.DataPoint((int)x,(int)y));
-                
+                var y = Math.Cos( x * to_rad );
+                // data_point.Add ( new Models.DataPoint { XValue = x, YValue = y } );
+                series.Points.Add ( new OxyPlot.DataPoint ( x, y ) );
+
             }
             tmp.Series.Add ( series );
-            TestDataPoints = data_point;
+            // TestDataPoints = data_point;
             this.Model = tmp;
             #endregion
         }
