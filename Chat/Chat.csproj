@@ -7,4 +7,19 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewsModels\Base " />
+    <Folder Include="Infrastructures\Commands " />
+   
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome5" Version="2.1.11" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
+   
+ 
+  </ItemGroup>
+
 </Project>
