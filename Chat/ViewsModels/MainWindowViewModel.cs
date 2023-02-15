@@ -1,5 +1,6 @@
 ﻿using Chat.Infrastructures.Commands;
 using Chat.Models;
+using Chat.Models.Decanat;
 using Chat.ViewsModels.Base;
 
 using OxyPlot;
@@ -7,6 +8,7 @@ using OxyPlot.Series;
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,13 @@ using System.Windows.Input;
 
 namespace Chat.ViewsModels {
     internal class MainWindowViewModel : ViewModel {
+
+        /*-----------------------------------------------------------------------------*/
+        #region
+
+        public ObservableCollection<Group> Groups { get; }
+
+        #endregion
 
         #region  Tab control
 
@@ -58,6 +67,8 @@ namespace Chat.ViewsModels {
         }
         #endregion
 
+        /*-----------------------------------------------------------------------------*/
+
         #region Commands
 
 
@@ -73,6 +84,8 @@ namespace Chat.ViewsModels {
         #endregion
 
         #endregion
+
+        /*-----------------------------------------------------------------------------*/
         public MainWindowViewModel () {
 
             #region Commands
@@ -84,8 +97,9 @@ namespace Chat.ViewsModels {
             #endregion
 
             #region  Test data constructor
-            var tmp = new PlotModel{ Title="Cosines",Subtitle=""};
-            var series = new LineSeries {Title="", MarkerType=MarkerType.Cross};
+            
+            var tmp_data = new PlotModel{ Title="Cosines",Subtitle="Test input data", PlotAreaBackground=OxyColor.FromRgb(255,255,255)};
+            var series = new LineSeries {Title="", MarkerType=MarkerType.Cross, BrokenLineColor=OxyColor.FromRgb(254,0,0)};
             // var data_point = new List<Models.DataPoint> ((int)(360 / 0.1));
             for ( var x = 0d; x <= 360; x += 0.1 ) {
 
@@ -95,10 +109,32 @@ namespace Chat.ViewsModels {
                 series.Points.Add ( new OxyPlot.DataPoint ( x, y ) );
 
             }
-            tmp.Series.Add ( series );
+            tmp_data.Series.Add ( series );
             // TestDataPoints = data_point;
-            this.Model = tmp;
+            this.Model = tmp_data;
             #endregion
+
+            #region
+
+            var student_index = 1;
+            var studens = Enumerable.Range(1,10).Select(s => new Student{
+                Name = $"Name {student_index} ",
+                SurName = $"SurName {student_index} ",
+                Patronymic = $"Patronymic {student_index++} ",
+                Birthday = DateTime.Now,
+                Rating= 0
+            });
+
+            var groups = Enumerable.Range( 1, 20 ).Select(i => new Group{
+                Name = $"Group  {i}",
+                Students = new ObservableCollection<Student>(studens)
+            });
+            Groups = new ObservableCollection<Group>(groups);
+
+            #endregion
+
         }
+
+        /*-----------------------------------------------------------------------------*/
     }
 }

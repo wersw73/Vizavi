@@ -78,14 +78,30 @@
                       Height="350" Width="700"    
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center">
-                    <oxy:PlotView oxy:Background="AntiqueWhite"
-                                  oxy:Foreground="Red"
-                                  oxy:BorderBrush="Green"
+                    <oxy:PlotView x:Name="Plotter" oxy:Background="#FFD8D3CC"
+                                  oxy:Foreground="#FF050505"
+                                  oxy:BorderBrush="#FFADC7AD"
                                   oxy:BorderThickness="7"
                                   oxy:Margin="2,2,2,2"
                                   Model="{Binding Model}">
                    
                     </oxy:PlotView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Decanat">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Groups">
+                        <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="Name"/>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Students">
+                        <DataGrid>
+                            
+                        </DataGrid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
         </TabControl>
