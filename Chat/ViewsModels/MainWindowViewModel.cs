@@ -19,9 +19,16 @@ namespace Chat.ViewsModels {
     internal class MainWindowViewModel : ViewModel {
 
         /*-----------------------------------------------------------------------------*/
-        #region
+        #region Decanat
 
         public ObservableCollection<Group> Groups { get; }
+
+        private Group _SelectGroup;
+
+        public Group SelectGroup {
+            get => _SelectGroup;
+            set => Set (ref _SelectGroup, value);
+        }
 
         #endregion
 
@@ -74,7 +81,7 @@ namespace Chat.ViewsModels {
 
         #region CloseApplicationCommand
         public ICommand CloseApplicationCommand { get; }
-
+       
 
         private bool CanCloseApplicationCommanExecute ( object p ) => true;
 

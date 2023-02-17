@@ -95,11 +95,23 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Groups">
-                        <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="Name"/>
+                        <ListBox ItemsSource="{Binding Groups}"
+                                 DisplayMemberPath="Name"
+                                 SelectedItem="{Binding SelectGroup}"/>
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Header="Students">
-                        <DataGrid>
-                            
+                    <GroupBox Grid.Column="1"
+                              Header="{Binding SelectGroup.Name, StringFormat='Student group {0}', FallbackValue='Students', TargetNullValue='Group not select'}">
+                        <DataGrid ItemsSource="{Binding SelectGroup.Students}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="SurName" Binding="{Binding SurName}"/>
+                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}"/>
+                                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday}"/>
+                                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
+                                <DataGridTextColumn Header="Group" Binding="{Binding DataContext.SelectGroup.Name, RelativeSource={RelativeSource AncestorType=GroupBox}}"/>
+                            </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
                 </Grid>
