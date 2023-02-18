@@ -108,7 +108,7 @@
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                                 <DataGridTextColumn Header="SurName" Binding="{Binding SurName}"/>
                                 <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}"/>
-                                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday}"/>
+                                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>
                                 <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
                                 <DataGridTextColumn Header="Group" Binding="{Binding DataContext.SelectGroup.Name, RelativeSource={RelativeSource AncestorType=GroupBox}}"/>
                             </DataGrid.Columns>

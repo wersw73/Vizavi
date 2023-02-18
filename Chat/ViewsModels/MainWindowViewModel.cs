@@ -34,7 +34,7 @@ namespace Chat.ViewsModels {
 
         #region  Tab control
 
-        private int _SelectTabIndex = 1;
+        private int _SelectTabIndex = 2;
 
         public int SelectTabIndex {
             get => _SelectTabIndex;

@@ -56,7 +56,7 @@ internal class Program {
        // var client = new HttpClient();
        // var response = client.GetAsync ( addressUrl ).Result;
        // var str_data = response.Content.ReadAsStringAsync ().Result;
-      // foreach ( var line in GetDataLines () ) {
+      // for each ( var line in GetDataLines () ) {
       //      Console.WriteLine ( line );
       //  }
      // var date = GetDates();
